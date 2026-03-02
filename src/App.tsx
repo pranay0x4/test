@@ -6,7 +6,12 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState(null);
+  type User = {
+    id: string;
+    email: string;
+  };
+  
+  const [user, setUser] = useState<User | null>(null);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
