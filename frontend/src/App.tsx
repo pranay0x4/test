@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState, useEffect } from "react";
 
 const API = "http://localhost:3000"; // change after deployment
@@ -74,45 +75,60 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>Auth System</h1>
-
-      {!token ? (
-        <>
-          <input
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br /><br />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br /><br />
-          <button onClick={register}>Register</button>
-          <button onClick={login} style={{ marginLeft: "10px" }}>
-            Login
-          </button>
-        </>
-      ) : (
-        <>
-          <h2>Dashboard</h2>
-          {user && (
-            <div>
-              <p><strong>User ID:</strong> {user.id}</p>
-              <p><strong>Email:</strong> {user.email}</p>
-            </div>
+      <div className="app">
+        <div className="card">
+          <h1 className="title">Auth System</h1>
+    
+          {!token ? (
+            <>
+              <div className="input-group">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+    
+              <div className="input-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+    
+              <div className="button-group">
+                <button className="btn secondary" onClick={register}>
+                  Register
+                </button>
+                <button className="btn primary" onClick={login}>
+                  Login
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="dashboard-title">Dashboard</h2>
+    
+              {user && (
+                <div className="user-box">
+                  <p><strong>User ID:</strong> {user.id}</p>
+                  <p><strong>Email:</strong> {user.email}</p>
+                </div>
+              )}
+    
+              <button className="btn danger full" onClick={logout}>
+                Logout
+              </button>
+            </>
           )}
-          <button onClick={logout}>Logout</button>
-        </>
-      )}
-
-      {message && <p style={{ marginTop: "20px", color: "blue" }}>{message}</p>}
-    </div>
-  );
+    
+          {message && <p className="message">{message}</p>}
+        </div>
+      </div>
+    );
 }
 
 export default App;
